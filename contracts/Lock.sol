@@ -1,4 +1,17 @@
-contract Lock {
+contract owned {
+  address owner;
+  function owned() {
+    owner = msg.sender;
+  }
+  function changeOwner(address newOwner) onlyowner {
+    owner = newOwner;
+  }
+  modifier onlyowner() {
+    if (msg.sender==owner) _
+  }
+}
+
+contract Lock is owned{
   uint price;
   uint startTime;
   uint endTime;
@@ -6,7 +19,7 @@ contract Lock {
 
   event GrantAccess(uint userId, uint startTime, uint endTime);
 
-  function updateRentInfo(uint _price, uint _startTime, uint _endTime) {
+  function updateRentInfo(uint _price, uint _startTime, uint _endTime) onlyowner {
     price = _price;
     startTime = _startTime;
     endTime = _endTime;
