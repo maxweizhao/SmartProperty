@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    .nomargin { margin: 0 !important; }
+    .lh2 { line-height: 2.4; }
+    .highlight { padding: 9px 14px; margin-bottom: 14px; background-color: #f7f7f9; border: 1px solid #e1e1e8; border-radius: 4px; }
+    #amount { font-size: 20px; }
+</style>
+<h2 ondblclick="autofill()"><span class="iconfont">&#xe601;</span>租户</h2>
+<div class="row">
+    <div class="col-md-10">
+        <div class="form-horizontal">
+            <h4>更新租赁合约</h4><hr />
+            <div>您的用户ID是：赵微</div><br />
+            <div class="info">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">房屋信息</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div>合约地址：@ViewBag.Id</div>
+                        <div>租金：<span id="price">150</span>元/天</div>
+                        <div>空闲时间：2016/1/10 - 2016/1/17</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">输入租期</label>
+                    <div class="col-sm-4">
+                        <input id="startDate" min="2016/2/1" onchange="getAmount()" class="form-control" type="date" placeholder="起始日期">
+                    </div>
+                    <div class="col-sm-1 lh2">至</div>
+                    <div class="col-sm-4">
+                        <input id="endDate" min="2016/2/1" max="2016/7/1" onchange="getAmount()" class="form-control" type="date" placeholder="终止日期">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-4">
+                        总金额：<span id="amount" class="text-danger"> 0 </span> 元
+                    </div>
+                </div>
+                @using (Html.BeginForm("CallBack", "Home", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-4">
+                            <button id="submit" class="btn btn-primary" onclick="submit()">提交合约并付款</button>
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <br />
+            <a href="~/Home/Index">返回</a>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        function showInfo()
+        {
+            $(".info").toggle();
+        }
+        function submit()
+        {
+            $("#submit").text("请稍后.");
+            setTimeout(function () { $("#submit").text("请稍后..") }, 200);
+            setTimeout(function () { $("#submit").text("请稍后...") }, 400);
+            setTimeout(function () { $("#submit").text("请稍后....") }, 600);
+            setTimeout(function () { $("#submit").text("请稍后.") }, 800);
+            setTimeout(function () { $("#submit").text("请稍后..") }, 1000);
+            setTimeout(function () { $("#submit").text("请稍后...") }, 1200);
+            setTimeout(function () { $("#submit").text("请稍后....") }, 1400);
+            setTimeout(function () { $("#submit").text("请稍后.") }, 1600);
+            setTimeout(function () { $("#submit").text("请稍后..") }, 1800);
+            setTimeout(function () { $("#submit").text("请稍后...") }, 2000);
+
+            setTimeout(function () { $("#submit").text("提交合约并付款") }, 2200);
+
+        }
+        function GetDateDiff(startDate, endDate)
+        {
+            var startTime = new Date(Date.parse(startDate.replace(/-/g, "/"))).getTime();
+            var endTime = new Date(Date.parse(endDate.replace(/-/g, "/"))).getTime();
+            var dates = Math.abs((startTime - endTime)) / (1000 * 60 * 60 * 24);
+            return dates;
+        }
+        function getAmount()
+        {
+            var startDate = $("#startDate").val();
+            var endDate = $("#endDate").val();
+            var price = document.getElementById("price").innerText;
+            if (startDate != "" && endDate != "") {
+                var dateDiff = GetDateDiff(startDate, endDate);
+                document.getElementById("amount").innerText = dateDiff * price;
+            }
+        }
+    </script>
+}

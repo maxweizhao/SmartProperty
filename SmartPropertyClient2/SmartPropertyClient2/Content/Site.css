@@ -1,0 +1,36 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1452348164_8134887.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1452348164_8134887.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1452348164_8134887.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1452348164_8134887.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1452348164_8134887.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+                    
+                    
+
+.iconfont { color:#15c88e; font-family:iconfont; font-size:30px; margin-right:10px }

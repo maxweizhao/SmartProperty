@@ -1,0 +1,139 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    .nomargin { margin:0 !important }
+    .lh2 { line-height:2.4 }
+    #address { font-size:20px; }
+    .success { display:none }
+</style>
+<h2 ><span class="iconfont">&#xe600;</span>房主</h2>
+<div class="row">
+    <div class="col-md-10">
+        <div class="form-horizontal">
+            <h4>更新租赁合约</h4><hr />
+            <div>您的门锁ID是：30054327104</div><br />
+            <div class="form-group">
+                <label class="col-sm-3 control-label">输入租金</label>
+                <div class="col-sm-4">
+                    <input id="price" class="form-control" type="number" placeholder="租金（元/天）">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">输入租期</label>
+                <div class="col-sm-4">
+                    <input id="startDate" class="form-control" type="date" placeholder="起始日期">
+                </div>
+                <div class="col-sm-1 lh2">至</div>
+                <div class="col-sm-4">
+                    <input id="endDate" class="form-control" type="date" placeholder="终止日期">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-4">
+                    <button id="submit" class="btn btn-primary" type="button" onclick="submit()">提交合约</button>
+                </div>
+            </div>
+            <div class="form-group success">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-4">
+                    创建成功，您的合约地址为：<span id="address" style="word-break:break-all" class="text-danger">0x0e7e4e2b408adff6daf54260cefca330056a185c</span>
+                    <div id="code"></div>
+                </div>
+            </div>
+            <br />
+            <a href="~/Home/Index">返回</a>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $("#startDate").val(Date.now());
+        function submit()
+        {
+            $("#submit").text("请稍后.");
+            setTimeout(function () { $("#submit").text("请稍后..") }, 200);
+            setTimeout(function () { $("#submit").text("请稍后...") }, 400);
+            setTimeout(function () { $("#submit").text("请稍后....") }, 600);
+            setTimeout(function () { $("#submit").text("提交合同") }, 800);
+
+            setTimeout("submit1()", 800);
+        }
+        function submit1()
+        {
+            $(".success").toggle(300);
+
+            var Web3 = require('web3');
+            var web3 = new Web3();
+            web3.setProvider(new Web3.providers.HttpProvider("192.168.0.99:4000"));
+            
+            "use strict";
+            var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+            function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+            function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+            var factory = function factory(Pudding)
+            {
+                var Lock = (function (_Pudding)
+                {
+                    _inherits(Lock, _Pudding);
+                    function Lock()
+                    {
+                        _classCallCheck(this, Lock);
+                        _get(Object.getPrototypeOf(Lock.prototype), "constructor", this).apply(this, arguments);
+                    }
+                    return Lock;
+                })(Pudding);
+
+                Lock.abi = [{ "constant": false, "inputs": [{ "name": "_userId", "type": "uint256" }], "name": "deposit", "outputs": [{ "name": "", "type": "bool" }], "type": "function" }, { "constant": false, "inputs": [{ "name": "_price", "type": "uint256" }, { "name": "_startTime", "type": "uint256" }, { "name": "_endTime", "type": "uint256" }], "name": "updateRentInfo", "outputs": [], "type": "function" }, { "constant": false, "inputs": [], "name": "getRentInfo", "outputs": [{ "name": "", "type": "uint256[3]" }], "type": "function" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "userId", "type": "uint256" }, { "indexed": false, "name": "startTime", "type": "uint256" }, { "indexed": false, "name": "endTime", "type": "uint256" }], "name": "GrantAccess", "type": "event" }];
+                Lock.binary = "6060604052610124806100126000396000f3606060405260e060020a6000350463b6b55f258114610031578063cbaf566d14610047578063d506355c1461005e575b005b6100bc600435600080543410156100df57610002565b60043560005560243560015560443560025561002f565b6100c660c060405260606003815b600081526020019060019003908161006c575050604080518083019091526003815b600081526020019060019003908161008e575050600054815260015460208201526002546040820152919050565b6060908152602090f35b6040518082606080838184600060046018f15093505050f35b6003829055600154600254606084815260809290925260a0527f2cc77e7d99fd9e51b73bdf57f929ef5cdfaa7fdbefdd1b10c5ef93e88e66e1829080a150600191905056";
+
+                if ("0x0e7e4e2b408adff6daf54260cefca330056a185c" != "") {
+                    Lock.address = "0x0e7e4e2b408adff6daf54260cefca330056a185c";
+                    Lock.deployed_address = "0x0e7e4e2b408adff6daf54260cefca330056a185c";
+                }
+
+                Lock.generated_with = "1.0.3";
+                Lock.contract_name = "Lock";
+                return Lock;
+            };
+
+            factory.load = factory;
+
+                window.Lock = factory;
+            
+
+
+
+
+
+
+            
+
+
+            var lock = Pudding.whisk(Lock.abi, Lock.binary, { gasLimit: 3141592 });
+            var lock1 = Lock.deployed();
+            lock1.updateRentInfo(1, 2, 3);
+
+            var price = $("#price");
+            var startDate = $("#startDate");
+            var endDate = $("#endDate");
+
+            alert("success");
+        }
+        $('#code').qrcode(
+        {
+            width: 200,
+            height: 200,
+            text: "http://192.168.0.153/Home/User2?Id=0x0e7e4e2b408adff6daf54260cefca330056a185c"
+        });
+
+        function autofill()
+        {
+            $("#")
+        }
+        
+    </script>
+}
