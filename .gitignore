@@ -1,0 +1,13 @@
+app/javascripts/contracts.js
+build
+node_modules
+.idea
+
+environments
+
+!environments/development/config.json
+!environments/production/config.json
+!environments/staging/config.json
+!environments/test/config.json
+
+app/npm-debug.log
