@@ -17,7 +17,7 @@
 感谢[钱友才](https://github.com/tomlion/)大神的大力支持。
 
 # 场景示例
-![SmartProperty](SmartProperty.png)
+![SmartProperty](smartproperty.png)
 
 
 # 应用示例
